@@ -1,8 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage';
 
-export class CheckoutCompletePage extends BasePage {
-  // Locators
+export class CheckoutCompletePage {
   private readonly pageTitle: Locator;
   private readonly completeHeader: Locator;
   private readonly completeText: Locator;
@@ -10,7 +8,6 @@ export class CheckoutCompletePage extends BasePage {
   private readonly ponyExpressImage: Locator;
 
   constructor(page: Page) {
-    super(page);
     this.pageTitle = page.locator('.title');
     this.completeHeader = page.locator('.complete-header');
     this.completeText = page.locator('.complete-text');

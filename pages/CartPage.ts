@@ -1,21 +1,17 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage';
 
-export class CartPage extends BasePage {
+export class CartPage {
   // Locators
   private readonly pageTitle: Locator;
   private readonly cartItems: Locator;
   private readonly continueShoppingButton: Locator;
   private readonly checkoutButton: Locator;
-  private readonly removeButton: Locator;
 
   constructor(page: Page) {
-    super(page);
     this.pageTitle = page.locator('.title');
     this.cartItems = page.locator('.cart_item');
     this.continueShoppingButton = page.locator('[data-test="continue-shopping"]');
     this.checkoutButton = page.locator('[data-test="checkout"]');
-    this.removeButton = page.locator('button').filter({ hasText: 'Remove' });
   }
 
   /**
@@ -70,12 +66,4 @@ export class CartPage extends BasePage {
   async proceedToCheckout(): Promise<void> {
     await this.checkoutButton.click();
   }
-
-  /**
-   * Continue shopping
-   */
-  async continueShopping(): Promise<void> {
-    await this.continueShoppingButton.click();
-  }
 }
-
