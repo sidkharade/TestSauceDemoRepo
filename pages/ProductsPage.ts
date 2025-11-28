@@ -1,18 +1,12 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/**
- * Page Object Model for Products/Inventory Page
- */
 export class ProductsPage extends BasePage {
   // Locators
   private readonly pageTitle: Locator;
   private readonly inventoryItems: Locator;
   private readonly shoppingCartBadge: Locator;
   private readonly shoppingCartLink: Locator;
-  private readonly productSortDropdown: Locator;
-  private readonly hamburgerMenu: Locator;
-  private readonly logoutLink: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -20,9 +14,6 @@ export class ProductsPage extends BasePage {
     this.inventoryItems = page.locator('.inventory_item');
     this.shoppingCartBadge = page.locator('.shopping_cart_badge');
     this.shoppingCartLink = page.locator('.shopping_cart_link');
-    this.productSortDropdown = page.locator('[data-test="product_sort_container"]');
-    this.hamburgerMenu = page.locator('#react-burger-menu-btn');
-    this.logoutLink = page.locator('#logout_sidebar_link');
   }
 
   /**
@@ -151,14 +142,6 @@ export class ProductsPage extends BasePage {
     } else {
       await expect(this.shoppingCartBadge).toHaveText(expectedCount.toString());
     }
-  }
-
-  /**
-   * Logout from the application
-   */
-  async logout(): Promise<void> {
-    await this.hamburgerMenu.click();
-    await this.logoutLink.click();
   }
 }
 

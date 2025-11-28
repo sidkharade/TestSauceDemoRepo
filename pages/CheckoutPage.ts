@@ -1,9 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/**
- * Page Object Model for Checkout Information Page
- */
 export class CheckoutPage extends BasePage {
   // Locators
   private readonly pageTitle: Locator;
@@ -11,8 +8,6 @@ export class CheckoutPage extends BasePage {
   private readonly lastNameInput: Locator;
   private readonly postalCodeInput: Locator;
   private readonly continueButton: Locator;
-  private readonly cancelButton: Locator;
-  private readonly errorMessage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -20,9 +15,7 @@ export class CheckoutPage extends BasePage {
     this.firstNameInput = page.locator('[data-test="firstName"]');
     this.lastNameInput = page.locator('[data-test="lastName"]');
     this.postalCodeInput = page.locator('[data-test="postalCode"]');
-    this.continueButton = page.locator('[data-test="continue"]');
-    this.cancelButton = page.locator('[data-test="cancel"]');
-    this.errorMessage = page.locator('[data-test="error"]');
+    this.continueButton = page.locator('[data-test="continue"]'); 
   }
 
   /**
@@ -50,13 +43,6 @@ export class CheckoutPage extends BasePage {
    */
   async clickContinue(): Promise<void> {
     await this.continueButton.click();
-  }
-
-  /**
-   * Click cancel button
-   */
-  async clickCancel(): Promise<void> {
-    await this.cancelButton.click();
   }
 
   /**

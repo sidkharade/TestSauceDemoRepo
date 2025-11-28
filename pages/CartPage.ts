@@ -1,9 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/**
- * Page Object Model for Shopping Cart Page
- */
 export class CartPage extends BasePage {
   // Locators
   private readonly pageTitle: Locator;
@@ -79,15 +76,6 @@ export class CartPage extends BasePage {
    */
   async continueShopping(): Promise<void> {
     await this.continueShoppingButton.click();
-  }
-
-  /**
-   * Remove product from cart by name
-   * @param productName - Name of the product to remove
-   */
-  async removeProductByName(productName: string): Promise<void> {
-    const product = this.cartItems.filter({ hasText: productName });
-    await product.locator('button').filter({ hasText: 'Remove' }).click();
   }
 }
 

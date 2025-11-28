@@ -1,32 +1,17 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/**
- * Page Object Model for Checkout Overview Page
- */
 export class CheckoutOverviewPage extends BasePage {
   // Locators
   private readonly pageTitle: Locator;
   private readonly cartItems: Locator;
-  private readonly subtotal: Locator;
-  private readonly tax: Locator;
-  private readonly total: Locator;
   private readonly finishButton: Locator;
-  private readonly cancelButton: Locator;
-  private readonly paymentInfo: Locator;
-  private readonly shippingInfo: Locator;
 
   constructor(page: Page) {
     super(page);
     this.pageTitle = page.locator('.title');
     this.cartItems = page.locator('.cart_item');
-    this.subtotal = page.locator('.summary_subtotal_label');
-    this.tax = page.locator('.summary_tax_label');
-    this.total = page.locator('.summary_total_label');
     this.finishButton = page.locator('[data-test="finish"]');
-    this.cancelButton = page.locator('[data-test="cancel"]');
-    this.paymentInfo = page.locator('.summary_value_label').first();
-    this.shippingInfo = page.locator('.summary_value_label').last();
   }
 
   /**
@@ -75,56 +60,6 @@ export class CheckoutOverviewPage extends BasePage {
     }
   }
 
-  /**
-   * Get subtotal amount
-   */
-  async getSubtotal(): Promise<string> {
-    const text = await this.subtotal.textContent();
-    return text?.replace('Item total: $', '') || '0';
-  }
-
-  /**
-   * Get tax amount
-   */
-  async getTax(): Promise<string> {
-    const text = await this.tax.textContent();
-    return text?.replace('Tax: $', '') || '0';
-  }
-
-  /**
-   * Get total amount
-   */
-  async getTotal(): Promise<string> {
-    const text = await this.total.textContent();
-    return text?.replace('Total: $', '') || '0';
-  }
-
-  /**
-   * Verify price calculation
-   */
-  async verifyPriceCalculation(): Promise<void> {
-    const subtotal = parseFloat(await this.getSubtotal());
-    const tax = parseFloat(await this.getTax());
-    const total = parseFloat(await this.getTotal());
-    
-    const calculatedTotal = subtotal + tax;
-    
-    expect(total).toBeCloseTo(calculatedTotal, 2);
-  }
-
-  /**
-   * Verify payment information is displayed
-   */
-  async verifyPaymentInfoDisplayed(): Promise<void> {
-    await expect(this.paymentInfo).toBeVisible();
-  }
-
-  /**
-   * Verify shipping information is displayed
-   */
-  async verifyShippingInfoDisplayed(): Promise<void> {
-    await expect(this.shippingInfo).toBeVisible();
-  }
 
   /**
    * Click finish button to complete order
@@ -133,11 +68,5 @@ export class CheckoutOverviewPage extends BasePage {
     await this.finishButton.click();
   }
 
-  /**
-   * Click cancel button
-   */
-  async clickCancel(): Promise<void> {
-    await this.cancelButton.click();
-  }
 }
 

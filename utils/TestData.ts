@@ -10,14 +10,6 @@ export const TestUsers = {
   LOCKED_OUT_USER: {
     username: 'locked_out_user',
     password: 'secret_sauce'
-  },
-  PROBLEM_USER: {
-    username: 'problem_user',
-    password: 'secret_sauce'
-  },
-  PERFORMANCE_GLITCH_USER: {
-    username: 'performance_glitch_user',
-    password: 'secret_sauce'
   }
 };
 
@@ -26,11 +18,6 @@ export const CheckoutInfo = {
     firstName: 'Siddhant',
     lastName: 'Kharade',
     postalCode: '012345'
-  },
-  ANOTHER_USER: {
-    firstName: 'Sid',
-    lastName: 'Kharade',
-    postalCode: '067890'
   }
 };
 

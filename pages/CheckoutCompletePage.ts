@@ -1,9 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
-/**
- * Page Object Model for Checkout Complete Page
- */
 export class CheckoutCompletePage extends BasePage {
   // Locators
   private readonly pageTitle: Locator;
@@ -45,12 +42,6 @@ export class CheckoutCompletePage extends BasePage {
     return await this.completeHeader.textContent() || '';
   }
 
-  /**
-   * Get complete text message
-   */
-  async getCompleteText(): Promise<string> {
-    return await this.completeText.textContent() || '';
-  }
 
   /**
    * Click back home button

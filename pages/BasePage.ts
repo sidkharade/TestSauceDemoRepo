@@ -1,8 +1,4 @@
 import { Page } from '@playwright/test';
-
-/**
- * Base Page class containing common functionality for all page objects
- */
 export class BasePage {
   protected page: Page;
 
@@ -30,14 +26,7 @@ export class BasePage {
    */
   async waitForPageLoad(): Promise<void> {
     await this.page.waitForLoadState('domcontentloaded');
-  }
-
-  /**
-   * Take a screenshot
-   * @param name - Screenshot name
-   */
-  async takeScreenshot(name: string): Promise<void> {
-    await this.page.screenshot({ path: `screenshots/${name}.png`, fullPage: true });
+    await this.page.waitForLoadState('networkidle');
   }
 }
 
